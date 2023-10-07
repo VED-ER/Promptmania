@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Modal from "./Modal";
 
@@ -20,6 +20,7 @@ const PromptCard = ({
   const [showModal, setShowModal] = useState(false);
   const [copied, setCopied] = useState(false);
   const { data: session } = useSession();
+  const router = useRouter();
 
   const copylink = () => {
     setCopied(true);
@@ -31,11 +32,22 @@ const PromptCard = ({
 
   const pathName = usePathname();
 
+  const onProfileClick = () => {
+    if (prompt.creator._id === session?.user.id) {
+      router.push("/profile");
+    } else {
+      router.push(`/profile/${prompt.creator._id}`);
+    }
+  };
+
   return (
     <>
       <div className="prompt_card">
         <div className="flex justify-between items-center">
-          <div className="flex gap-5 items-center">
+          <div
+            onClick={onProfileClick}
+            className="flex gap-5 items-center cursor-pointer"
+          >
             <Image
               alt="user image"
               src={prompt.creator.image}
@@ -71,7 +83,10 @@ const PromptCard = ({
 
         {pathName === "/profile" && session?.user.id === prompt.creator._id && (
           <div className="flex gap-8 justify-center mt-5">
-            <p onClick={onEdit && onEdit} className="text-green-400 px-5 cursor-pointer">
+            <p
+              onClick={onEdit && onEdit}
+              className="text-green-400 px-5 cursor-pointer"
+            >
               Edit
             </p>
             <p
