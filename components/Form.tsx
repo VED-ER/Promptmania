@@ -5,7 +5,7 @@ type PromptPost = {
   tag: string;
 };
 type FormProps = {
-  type: "Create";
+  type: "Create" | "Update";
   post: PromptPost;
   setPost: (post: PromptPost) => void;
   submitting: boolean;

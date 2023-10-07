@@ -2,11 +2,13 @@
 
 import PromptCard from "@components/PromptCard";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Profile = () => {
   const [prompts, setPrompts] = useState<PromptPost[]>([]);
   const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUserPrompts = async () => {
@@ -18,11 +20,29 @@ const Profile = () => {
     if (session?.user.id) fetchUserPrompts();
   }, [session?.user.id]);
 
-  const onClickEdit = ()=>{}
+  const onClickEdit = (promptId: string) => {
+    router.push(`/update-prompt?id=${promptId}`);
+  };
+
+  const onDeleteClick = async (promptId: string) => {
+    try {
+      const response = await fetch(`/api/prompt/${promptId}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setPrompts((prevPrompts) => {
+          return prevPrompts.filter((p) => p._id !== promptId);
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="w-full">
-      <div className="mb-10">
+      <div>
         <h1 className="head_text py-2">
           <span className="blue_gradient">My Profile</span>
         </h1>
@@ -32,8 +52,19 @@ const Profile = () => {
         </p>
       </div>
 
-      {prompts?.length > 0 &&
-        prompts.map((p) => <PromptCard prompt={p} key={p._id} />)}
+      <div className="mt-16 w-full max-w-xl flex justify-center items-start flex-col gap-2;">
+        <div className="prompt_layout">
+          {prompts?.length > 0 &&
+            prompts.map((p) => (
+              <PromptCard
+                prompt={p}
+                key={p._id}
+                onDelete={() => onDeleteClick(p._id)}
+                onEdit={() => onClickEdit(p._id)}
+              />
+            ))}
+        </div>
+      </div>
     </div>
   );
 };
