@@ -1,10 +1,13 @@
 "use client";
 
 import Profile from "@components/Profile";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const UserProfile = ({ params }: { params: { id: string } }) => {
   const [userPrompts, setUserPrompts] = useState<PromptPost[]>([]);
+  const searchParams = useSearchParams();
+  const username = searchParams.get("name");
 
   useEffect(() => {
     const fetchPrompts = async () => {
@@ -21,7 +24,11 @@ const UserProfile = ({ params }: { params: { id: string } }) => {
   }, []);
 
   return (
-    <Profile name="test" prompts={userPrompts} setPrompts={setUserPrompts} />
+    <Profile
+      name={username!}
+      prompts={userPrompts}
+      setPrompts={setUserPrompts}
+    />
   );
 };
 

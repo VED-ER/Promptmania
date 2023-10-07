@@ -36,7 +36,7 @@ const PromptCard = ({
     if (prompt.creator._id === session?.user.id) {
       router.push("/profile");
     } else {
-      router.push(`/profile/${prompt.creator._id}`);
+      router.push(`/profile/${prompt.creator._id}?name=${prompt.creator.username}`);
     }
   };
 
