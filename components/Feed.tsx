@@ -67,7 +67,7 @@ const Feed = () => {
           value={searchText}
           onChange={handleSearchChange}
           type="text"
-          placeholder="Search for a tag or username..."
+          placeholder="Search for a prompt,tag or username..."
           required
           className="search_input peer"
         />
