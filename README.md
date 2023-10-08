@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nextjs Promptmania
 
-## Getting Started
+A full-stack app including authentication and CRUD functionalities.
 
-First, run the development server:
+## Built with
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- NextJS
+- TypeScript
+- Tailwind
+- bcrypt
+- mongoDB
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Create, update, read, delete prompts
+- Everything is saved in database
+- Search & filter functionality
+- Fully responsive
+- Google and credentials auth
 
-## Learn More
+## Screenshot
+![promptmania-cropped](https://github.com/VED-ER/Promptmania/assets/92994473/4d918368-84d6-48d8-9020-22480175705c)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Github - [VED-ER](https://github.com/VED-ER)
+- LinkedIn - [Vedran Erak](https://www.linkedin.com/in/vedran-erak-9b8321212/)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
