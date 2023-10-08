@@ -36,7 +36,9 @@ const PromptCard = ({
     if (prompt.creator._id === session?.user.id) {
       router.push("/profile");
     } else {
-      router.push(`/profile/${prompt.creator._id}?name=${prompt.creator.username}`);
+      router.push(
+        `/profile/${prompt.creator._id}?name=${prompt.creator.username}`
+      );
     }
   };
 
@@ -50,7 +52,11 @@ const PromptCard = ({
           >
             <Image
               alt="user image"
-              src={prompt.creator.image}
+              src={
+                prompt.creator.image
+                  ? prompt.creator.image
+                  : "/assets/images/user.svg"
+              }
               width={50}
               height={50}
               className="rounded-full object-contain"
